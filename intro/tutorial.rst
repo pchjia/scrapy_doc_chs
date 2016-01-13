@@ -401,7 +401,7 @@ Here is a modification to our spider that does just that::
 
         def parse(self, response):
             for href in response.css("ul.directory.dir-col > li > a::attr('href')"):
-                url = response.urljoin(response.url, href.extract())
+                url = response.urljoin(href.extract())
                 yield scrapy.Request(url, callback=self.parse_dir_contents)
 
         def parse_dir_contents(self, response):
